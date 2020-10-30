@@ -1,0 +1,21 @@
+{
+    "name": "josecarlosphp/internet",
+    "description": "Classes to browse, crawl, get files,...",
+    "keywords": [
+        "internet", "browse", "crawl", "get"
+    ],
+    "homepage": "https://github.com/josecarlosphp/internet",
+    "type": "library",
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "José Carlos Cruz Parra",
+            "homepage": "https://josecarlosphp.com/"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "josecarlosphp\\internet\\": "src/"
+        }
+    }
+}
