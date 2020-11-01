@@ -227,7 +227,7 @@ class Rata
                     }
 				}
 
-                $url = $sub ? ponerBarra($this->_base) . $sub : $this->_base;
+                $url = $sub ? $this->ponerBarra($this->_base) . $sub : $this->_base;
                 if(!empty($params) && !$post)
                 {
                     $url .= '?' . http_build_query($params);
@@ -267,7 +267,7 @@ class Rata
                             break;
                     }
                 }
-				
+
                 if($close)
                 {
                     $this->Close();
@@ -429,7 +429,7 @@ class Rata
                 }
                 break;
 			case 'file':
-				$filepath = ponerBarra($this->_base).$sub;
+				$filepath = $this->ponerBarra($this->_base).$sub;
 				if(is_file($filepath) || mb_substr(trim($filepath), 0, 4) == 'http')
 				{
 					if(is_readable($filepath) || mb_substr(trim($filepath), 0, 4) == 'http')
@@ -575,6 +575,22 @@ class Rata
                 break;
         }
     }
+    /**
+    * Pone la '/' final de una cadena (si no la tiene)
+    *
+    * @param string $str
+    * @return string
+    */
+   protected function ponerBarra($str)
+   {
+       $len = mb_strlen($str);
+       if($len == 0 || mb_substr($str, $len-1) != '/')
+       {
+           $str .= '/';
+       }
+
+       return $str;
+   }
     /**
 	 * Muestra un mensaje si modo debug está activado
 	 *
