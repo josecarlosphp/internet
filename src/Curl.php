@@ -443,7 +443,6 @@ class Curl
 
 					if(!$conFile)
 					{
-						//$post = array_ToQueryString($post);
 						$post = http_build_query($post);
 					}
 				}
