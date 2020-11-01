@@ -230,7 +230,7 @@ class Rata
                 $url = $sub ? ponerBarra($this->_base) . $sub : $this->_base;
                 if(!empty($params) && !$post)
                 {
-                    $url .= '?'.array_ToQueryString($params);
+                    $url .= '?' . http_build_query($params);
                 }
 
                 $this->MsgDbg('<pre>cURL ' . var_export(array(
