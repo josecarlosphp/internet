@@ -1,6 +1,6 @@
 <?php
 /**
- * This file is part of josecarlosphp/reader - PHP classes to read from different sources.
+ * This file is part of josecarlosphp/internet - PHP classes to read from different sources.
  *
  * josecarlosphp/internet is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
