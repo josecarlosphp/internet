@@ -407,7 +407,27 @@ class Rata
 								break;
                             default:
                                 $this->MsgDbg($sub);
-                                $resultado = ftp_get($this->_con, $filepath, $sub, FTP_BINARY, 0) ? file_get_contents($filepath) : false;
+
+                                if(mb_strpos($sub, '/') !== false)
+                                {
+                                    $dir = dirname($sub);
+                                    $file = basename($sub);
+
+                                    if(ftp_chdir($this->_con, $dir))
+                                    {
+                                        $this->MsgDbg('Se ha cambiado al directorio');
+                                    }
+                                    else
+                                    {
+                                        $this->MsgDbg('Error: No se pudo cambiar al directorio');
+                                    }
+                                }
+                                else
+                                {
+                                    $file = $sub;
+                                }
+
+                                $resultado = ftp_get($this->_con, $filepath, $file, FTP_BINARY, 0) ? file_get_contents($filepath) : false;
                                 break;
                         }
                         @unlink($filepath);
