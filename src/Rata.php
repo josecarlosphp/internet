@@ -280,6 +280,11 @@ class Rata
                 {
 					if(ftp_login($this->_con, $params['user'], $params['pass']))
                     {
+                        if(isset($params['ftp_usepasvaddress']))
+                        {
+                            ftp_set_option($this->con, FTP_USEPASVADDRESS, $params['ftp_usepasvaddress'] ? true : false);
+                        }
+
 						if(isset($params['ftp_pasv']))
 						{
 							ftp_pasv($this->_con, $params['ftp_pasv'] ? true : false);
