@@ -275,7 +275,7 @@ class Rata
 
                 break;
             case 'ftp':
-                $this->Open();
+                $this->Open(false, $params);
                 if($this->_con)
                 {
 					if(ftp_login($this->_con, $params['user'], $params['pass']))
@@ -561,7 +561,7 @@ class Rata
      *
      * @param bool $reset
      */
-    protected function Open($reset = false)
+    protected function Open($reset = false, $params = array())
     {
         switch($this->_method)
         {
@@ -578,7 +578,12 @@ class Rata
                 if(empty($this->_con) || $reset)
                 {
                     $this->MsgDbg('Open FTP');
-                    $this->_con = ftp_connect($this->_base);
+                    $func = empty($params['ftp_ssl']) && empty($params['ssl']) ? 'ftp_connect' : 'ftp_ssl_connect';
+                    $this->_con = $func(
+                        $this->_base,
+                        isset($params['ftp_port']) ? $params['ftp_port'] : (isset($params['port']) ? $params['port'] : 21),
+                        isset($params['ftp_timeout']) ? $params['ftp_timeout'] : (isset($params['timeout']) ? $params['timeout'] : 90),
+                    );
                 }
                 break;
         }
