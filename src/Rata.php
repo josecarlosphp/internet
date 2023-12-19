@@ -582,7 +582,7 @@ class Rata
                     $this->_con = $func(
                         $this->_base,
                         isset($params['ftp_port']) ? $params['ftp_port'] : (isset($params['port']) ? $params['port'] : 21),
-                        isset($params['ftp_timeout']) ? $params['ftp_timeout'] : (isset($params['timeout']) ? $params['timeout'] : 90),
+                        isset($params['ftp_timeout']) ? $params['ftp_timeout'] : (isset($params['timeout']) ? $params['timeout'] : 90)
                     );
                 }
                 break;
