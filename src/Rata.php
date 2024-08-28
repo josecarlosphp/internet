@@ -150,10 +150,13 @@ class Rata
 	 */
 	public function GetFile($filepath, $sub, $params=array(), $post=false, $func='', $opts=array())
     {
-		if(!isset($opts[CURLOPT_FOLLOWLOCATION]))
-		{
-			$opts[CURLOPT_FOLLOWLOCATION] = true;
-		}
+		if ($opts === false) {
+            $opts = array();
+        }
+
+        if (!isset($opts[CURLOPT_FOLLOWLOCATION])) {
+            $opts[CURLOPT_FOLLOWLOCATION] = true;
+        }
 
 		/*if(isset($params[0]) && is_array($params[0]))
         {
