@@ -16,7 +16,7 @@
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  *
  * @see         https://github.com/josecarlosphp/internet
- * @copyright   2012-2020 José Carlos Cruz Parra
+ * @copyright   2012-2026 José Carlos Cruz Parra
  * @license     https://www.gnu.org/licenses/gpl.txt GPL version 3
  * @desc        To work with cUrl.
  */
@@ -160,7 +160,7 @@ class Curl
 		$this->_cookieDir = is_dir(getcwd().'/'.$str) ? getcwd().'/'.$str : $str;
         $this->_cookiePath = $this->_cookieDir.$this->_cookieFile;
 
-		if(is_dir($this->_cookieDir) && is_resource($this->_ch))
+		if(is_dir($this->_cookieDir) && $this->IsOpen())
 		{
 			$this->SetOpt(CURLOPT_COOKIEJAR, $this->_cookiePath);
 			$this->SetOpt(CURLOPT_COOKIEFILE, $this->_cookiePath);
@@ -181,7 +181,7 @@ class Curl
         $this->_cookieFile = $str;
         $this->_cookiePath = $this->_cookieDir.$this->_cookieFile;
 
-		if(is_dir($this->_cookieDir) && is_resource($this->_ch))
+		if(is_dir($this->_cookieDir) && $this->IsOpen())
 		{
 			$this->SetOpt(CURLOPT_COOKIEJAR, $this->_cookiePath);
 			$this->SetOpt(CURLOPT_COOKIEFILE, $this->_cookiePath);
@@ -653,10 +653,15 @@ class Curl
 	 */
     public function Close()
     {
-        if(is_resource($this->_ch))
+        if($this->IsOpen())
         {
             curl_close($this->_ch);
         }
+    }
+
+    public function IsOpen()
+    {
+        return is_object($this->_ch) || is_resource($this->_ch);
     }
 	/**
 	 * Registra un error

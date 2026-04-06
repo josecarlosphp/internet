@@ -16,7 +16,7 @@
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  *
  * @see         https://github.com/josecarlosphp/internet
- * @copyright   2012-2020 José Carlos Cruz Parra
+ * @copyright   2012-2026 José Carlos Cruz Parra
  * @license     https://www.gnu.org/licenses/gpl.txt GPL version 3
  * @desc        To work with FTP.
  */
@@ -269,13 +269,17 @@ class Ftp
      */
     public function Close()
     {
-        if (is_resource($this->_conn)) {
+        if ($this->IsOpen()) {
             return ftp_close($this->_conn);
         }
 
         return false;
     }
 
+    public function IsOpen()
+    {
+        return is_object($this->_conn) || is_resource($this->_conn);
+    }
     /**
      * Registra un error
      *
